@@ -173,3 +173,54 @@ def create_flow(access_token: str, name: str, slug: str, description: str, enabl
     response.raise_for_status()
 
     return response.json()
+
+
+def create_field(access_token: str,
+                 flow_id: str,
+                 name: str,
+                 slug: str,
+                 description: str,
+                 field_type: str = 'string',
+                 validation_rules: list = None,
+                 required: bool = False,
+                 default=None,
+                 enabled: bool = True,
+                 order: int = 1,
+                 omit_null: bool = False
+                 ) -> dict:
+    headers = {
+        'Authorization': 'Bearer {}'.format(access_token),
+        'Content-Type': 'application/json',
+    }
+
+    if validation_rules is None:
+        validation_rules = []
+
+    data = {
+        'data': {
+            'type': 'field',
+            'name': name,
+            'slug': slug,
+            'field_type': field_type,
+            'validation_rules': validation_rules,
+            'description': description,
+            'required': required,
+            'default': default,
+            'enabled': enabled,
+            'order': order,
+            'omit_null': omit_null,
+            'relationships': {
+                'flow': {
+                    'data': {
+                        'type': 'flow',
+                        'id': flow_id
+                    }
+                }
+            }
+        }
+    }
+
+    response = requests.post('https://api.moltin.com/v2/fields', headers=headers, json=data)
+    response.raise_for_status()
+
+    return response.json()
