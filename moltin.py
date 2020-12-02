@@ -47,7 +47,7 @@ def create_product(access_token: str,
                    currency: str = 'RUB',
                    includes_tax: bool = True,
                    status: str = 'live',
-                   manage_stock: bool = True,
+                   manage_stock: bool = False,
                    commodity_type: str = 'physical',
                    ) -> dict:
     headers = {
