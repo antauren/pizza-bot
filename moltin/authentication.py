@@ -1,3 +1,5 @@
+# https://documentation.elasticpath.com/commerce-cloud/docs/api/basics/authentication/
+
 import datetime as dt
 
 import requests
