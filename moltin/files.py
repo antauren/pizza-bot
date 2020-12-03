@@ -3,6 +3,15 @@
 import requests
 
 
+def get_file(access_token: str, file_id: str) -> dict:
+    headers = {'Authorization': 'Bearer {}'.format(access_token)}
+
+    response = requests.get('https://api.moltin.com/v2/files/{}'.format(file_id), headers=headers)
+    response.raise_for_status()
+
+    return response.json()
+
+
 def create_file_from_url(access_token: str, url: str, filename: str) -> dict:
     headers = {
         'Authorization': 'Bearer {}'.format(access_token),
