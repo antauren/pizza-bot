@@ -22,6 +22,13 @@ def get_product(product_id: str, access_token: str) -> dict:
     return response.json()
 
 
+def delete_product(access_token: str, product_id: str) -> None:
+    headers = {'Authorization': 'Bearer {}'.format(access_token)}
+
+    response = requests.delete('https://api.moltin.com/v2/products/{}'.format(product_id), headers=headers)
+    response.raise_for_status()
+
+
 def create_product(access_token: str,
                    name: str,
                    slug: str,
