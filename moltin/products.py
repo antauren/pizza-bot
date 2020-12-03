@@ -3,7 +3,7 @@
 import requests
 
 
-def get_products_for_one_category_with_live_status(access_token: str, category_id: str) -> dict:
+def filter_products_by_one_category_and_live_status(access_token: str, category_id: str) -> dict:
     headers = {'Authorization': 'Bearer {}'.format(access_token)}
     params = {'filter': 'eq(category.id,{}),eq(status,live)'.format(category_id)}
 
