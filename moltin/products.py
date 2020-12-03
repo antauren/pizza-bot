@@ -95,3 +95,7 @@ def create_category_relationship(access_token: str, product_id: str, category_id
     response.raise_for_status()
 
     return response.json()
+
+
+def get_product_display_price(product: dict) -> dict:
+    return product['meta']['display_price']['with_tax']
