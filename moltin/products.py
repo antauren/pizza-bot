@@ -13,6 +13,15 @@ def get_products_for_one_category_with_live_status(access_token: str, category_i
     return response.json()
 
 
+def get_product(product_id: str, access_token: str) -> dict:
+    headers = {'Authorization': 'Bearer {}'.format(access_token)}
+
+    response = requests.get('https://api.moltin.com/v2/products/{}'.format(product_id), headers=headers)
+    response.raise_for_status()
+
+    return response.json()
+
+
 def create_product(access_token: str,
                    name: str,
                    slug: str,
